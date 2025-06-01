@@ -1,4 +1,4 @@
 python-dotenv
 openai-agents
 fastapi
-uvicorn
+uvicorn[standard]
