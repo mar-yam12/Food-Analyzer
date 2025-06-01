@@ -55,8 +55,12 @@ agent = Agent(
 class ChatRequest(BaseModel):
     messages: List[Dict[str, Any]]  # [{"role": "user", "content": "What's in an apple?"}]
 
+@app.get("/")
+def root():
+    return {"message": "API is running."}
+
 # Endpoint to receive chat messages and respond
-@app.post("/")
+@app.post("/chat")
 async def chat(req: ChatRequest):
     result = await Runner.run(agent, input=req.messages, run_config=config)
     return {"response": result.final_output}
